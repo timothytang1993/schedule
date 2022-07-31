@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <button id="change">change</button>
+  </body>
+  <script>
+    let data = [
+      [
+        {
+          time: "13:00",
+          event: "集合",
+        },
+        {
+          time: "14:00",
+          event: "酒店",
+        },
+      ],
+      [
+        {
+          time: "14:00",
+          event: "桌球",
+        },
+      ],
+    ];
+
+    document.getElementById("change").onclick = function () {
+      while (document.getElementById("app").firstChild) {
+        document
+          .getElementById("app")
+          .removeChild(document.getElementById("app").lastChild);
+      }
+
+      let number = getNumber();
+
+      for (d of data[number]) {
+        let div = document.createElement("div");
+        div.append(`time: ${d["time"]}, event: ${d["event"]}`);
+        document.getElementById("app").append(div);
+      }
+    };
+
+    function getNumber() {
+      let number = data.length * Math.random();
+      console.log(number);
+      if (number === 0) {
+        number = 1;
+      }
+      return Math.floor(number);
+    }
+  </script>
+</html>
